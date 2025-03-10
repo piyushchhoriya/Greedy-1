@@ -65,18 +65,26 @@ class Solution {
     }
 }
 
-// class Solution {
-//     public boolean canJump(int[] nums) {
-//         if(nums==null || nums.length==0){
-//             return true;
-//         }
-//         int n=nums.length;
-//         for(int i=0;i<n-1;i++){
-//             if(nums[i]+i >= n-1){
-//                 return true;
-//             }
-//         }
-//         return false;
-        
-//     }
-// }
+
+//Optimal Solution
+// Time Complexity :O(n)
+// Space Complexity : O(1)
+class Solution {
+    HashSet<Integer> set;
+    public boolean canJump(int[] nums) {
+        if(nums==null || nums.length==0 || nums.length==1){
+            return true;
+        }
+        int n =nums.length-1;
+        int destination = n-1;
+        for(int i=n-2;i>=0;i--){
+            if(i+nums[i]>=destination){
+                destination = i;
+            }
+        }
+        if(destination==0){
+            return true;
+        }
+        return false;
+    }
+}
